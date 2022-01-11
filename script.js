@@ -1,5 +1,7 @@
 let choiceOptions = ["ROCK", "PAPER", "SCISSORS"];
 let buttons = document.querySelectorAll('button');
+let score = document.querySelector('.score')
+let results = document.querySelector('.results')
 let playerChoice, computerChoice, playerPoints = 0, computerPoints = 0;
 
 
@@ -19,89 +21,33 @@ buttons.forEach(button => {
     button.addEventListener('click', () => {
         setPlayerChoice(button.id.toUpperCase());
         setComputerChoice(choiceOptions[Math.floor(Math.random() * choiceOptions.length)]);
+
         if (playerChoice === computerChoice) {
           playerPoints += 1;
           computerPoints += 1;
-          console.log(`Player points: ${playerPoints}`);
-          console.log(`Computer points: ${computerPoints}`);
-        } else if (playerChoice === "PAPER" && computerChoice === "ROCK") {
+          score.innerHTML = `Player points: ${playerPoints} <br> Computer points: ${computerPoints}`
+        } else if ((playerChoice === "PAPER" && computerChoice === "ROCK") || 
+          (playerChoice === "SCISSORS" && computerChoice === "PAPER") || 
+          (playerChoice === "ROCK" &&  computerChoice === "SCISSORS")) {
           playerPoints += 1;
-          console.log(`Player points: ${playerPoints}`)
-          console.log(`Computer points: ${computerPoints}`);;
-        } else if (playerChoice === "SCISSORS" && computerChoice === "PAPER") {
-            playerPoints += 1;
-            console.log(`Player points: ${playerPoints}`);
-            console.log(`Computer points: ${computerPoints}`);
-        } else if (playerChoice === "ROCK" && computerChoice === "SCISSORS") {
-          playerPoints += 1;
-          console.log(`Player points: ${playerPoints}`);
-          console.log(`Computer points: ${computerPoints}`);
+          score.innerHTML = `Player points: ${playerPoints} <br> Computer points: ${computerPoints}`
         } else { 
           computerPoints += 1;
-          console.log(`Player points: ${playerPoints}`);
-          console.log(`Computer points: ${computerPoints}`);
-        } if (playerPoints === 5) {
-          console.log(`You won the game! ${playerPoints}:${computerPoints}`)
+          score.innerHTML = `Player points: ${playerPoints} <br> Computer points: ${computerPoints}`
+        }if (playerPoints === 5) {
+          results.textContent =`You won the game!` 
+          score.innerHTML = `Score: ${playerPoints} : ${computerPoints}`
           playerPoints = 0;
           computerPoints = 0;
           return;          
         } else if (computerPoints === 5) {
-          console.log(`You lost the game! ${playerPoints}:${computerPoints}`)
+          results.textContent =`You lost the game! :()` 
+          score.innerHTML = `Score: ${playerPoints} : ${computerPoints}`
           playerPoints = 0;
           computerPoints = 0;
           return;
         }
-
+        results.textContent =``
     });
 });
 
-// for (let i = 0; i < 5; i++) {
-    
-// }
-
-//secure big, small letters and others characters
-
-
-// let game = (playerChoice, computerChoice) => {
-//     computerChoice = choiceOptions[Math.floor(Math.random()*choiceOptions.length)];
-//     playerChoice = prompt("Chose paper, rock or scissors?").toUpperCase();
-
-//     if (playerChoice === computerChoice) {
-//        return "Tie! Try one more time"
-//     } else if (playerChoice === "PAPER" && computerChoice === "ROCK") {
-//         return "You won! Paper beats rock";
-//     } else if (playerChoice === "SCISSORS" && computerChoice === "PAPER") {
-//         return "You won! Scissors beats paper";
-//     } else if (playerChoice === "ROCK" && computerChoice === "SCISSORS") {
-//         return "You won! Rock beats scissors";
-//     } else return "Unfortunately you have lost!"
-// }
-// console.log(game());
-
-
-
-
-
-
-// for (let i = 0; i < 5; i++) {
-    
-// }
-
-//secure big, small letters and others characters
-
-
-// let game = (playerChoice, computerChoice) => {
-//     computerChoice = choiceOptions[Math.floor(Math.random()*choiceOptions.length)];
-//     playerChoice = prompt("Chose paper, rock or scissors?").toUpperCase();
-
-//     if (playerChoice === computerChoice) {
-//        console.log("Tie! Try one more time"
-//     } else if (playerChoice === "PAPER" && computerChoice === "ROCK") {
-//         console.log("You won! Paper beats rock";
-//     } else if (playerChoice === "SCISSORS" && computerChoice === "PAPER") {
-//         console.log("You won! Scissors beats paper";
-//     } else if (playerChoice === "ROCK" && computerChoice === "SCISSORS") {
-//         console.log("You won! Rock beats scissors";
-//     } else console.log("Unfortunately you have lost!")
-// }
-// console.log(game());
